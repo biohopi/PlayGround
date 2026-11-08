@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+    <meta name="theme-color" content="#101513" />
+    <title>FIELD//ZERO — Tactical Operations</title>
+  </head>
+  <body>
+    <main id="game-shell">
+      <canvas id="world" aria-label="3D battlefield"></canvas>
+      <div class="world-vignette"></div>
+      <div id="lobby" class="screen">
+        <header class="topbar">
+          <a class="brand" href="#" aria-label="Field Zero home"><span class="brand-mark">F<span>/</span>Z</span><span class="brand-copy">FIELD<span>//</span>ZERO<small>TACTICAL OPERATIONS</small></span></a>
+          <div class="top-center"><span class="live-dot"></span> OPERATION IRON VEIL <i></i> SECTOR 07 / NORTH RIDGE</div>
+          <div class="top-actions"><div class="operator"><span class="operator-icon">◈</span><span>OPERATOR<small>FIELD TESTER</small></span><b>LV. 01</b></div><button class="icon-btn" id="fullscreen" aria-label="Toggle fullscreen" title="Fullscreen">⛶</button></div>
+        </header>
+        <section class="lobby-layout">
+          <aside class="nav-rail">
+            <div class="nav-caption">DEPLOYMENT</div>
+            <button class="nav-item active" data-tab="offline"><span>▣</span> OFFLINE <b>01</b></button>
+            <button class="nav-item" data-tab="online"><span>◉</span> ONLINE <b class="soon-tag">SOON</b></button>
+            <div class="nav-divider"></div>
+            <button class="nav-item" data-tab="settings"><span>⚙</span> SETTINGS</button>
+            <button class="nav-item" data-tab="layout"><span>⌗</span> HUD LAYOUT</button>
+            <div class="nav-bottom"><span class="signal-bars">▂▄▆</span> BUILD 0.9.4 <small>LOCAL BUILD</small></div>
+          </aside>
+          <section class="lobby-main">
+            <div class="section-kicker"><span class="kicker-line"></span> TRAINING GROUNDS <span class="kicker-line dim"></span><span class="region-label">EUROPE / TEST RANGE</span></div>
+            <div class="headline-wrap"><div class="eyebrow">NO SIGNAL. NO RULES.</div><h1>THE FIELD<br /><em>IS YOURS.</em></h1><p class="hero-copy">A live-fire sandbox. Drop in, gear up, and own the next move.</p></div>
+            <div id="offline-panel" class="tab-panel">
+              <div class="mode-card selected"><span class="mode-symbol">⌖</span><div><b>SOLO SKIRMISH</b><small>OFFLINE • CUSTOM FIELD</small></div><span class="mode-check">✓</span></div>
+              <div class="team-config">
+                <div class="team-heading"><span>SIMULATION SETUP</span><span class="tag-local">LOCAL INSTANCE</span></div>
+                <div class="team-row"><span class="team-color blue"></span><div class="team-name">SQUAD ALPHA<small>YOUR TEAM</small></div><div class="stepper" data-team="alpha"><button aria-label="Remove Alpha bot">−</button><b>0</b><button aria-label="Add Alpha bot">+</button></div><span class="bot-label">BOTS</span></div>
+                <div class="team-row"><span class="team-color red"></span><div class="team-name">SQUAD BRAVO<small>OPPOSITION</small></div><div class="stepper" data-team="bravo"><button aria-label="Remove Bravo bot">−</button><b>0</b><button aria-label="Add Bravo bot">+</button></div><span class="bot-label">BOTS</span></div>
+                <div class="setup-note"><span>ⓘ</span> Bots are local sparring actors. A zero-bot field is a quiet sandbox.</div>
+              </div>
+              <button id="start-match" class="deploy-btn"><span class="deploy-icon">▶</span><span>DEPLOY TO FIELD<small>START OFFLINE MATCH</small></span><span class="deploy-arrow">↗</span></button>
+            </div>
+            <div id="online-panel" class="tab-panel hidden"><div class="placeholder-card"><span class="placeholder-icon">◉</span><div class="eyebrow">NETWORK SERVICES</div><h2>COMING ONLINE</h2><p>Matchmaking and dedicated-server support are intentionally left open for your integration.</p><span class="tag-local">BACKEND NOT CONNECTED</span></div></div>
+            <div id="settings-panel" class="tab-panel hidden"><div class="settings-card"><div class="team-heading"><span>FIELD PREFERENCES</span><span class="tag-local">SAVED LOCALLY</span></div><label class="setting-row">LOOK SENSITIVITY <input id="sensitivity" type="range" min="3" max="18" value="9"><b id="sensitivity-value">9</b></label><label class="setting-row">RENDER QUALITY <select id="quality"><option value="high">HIGH · CINEMATIC</option><option value="balanced">BALANCED</option><option value="performance">PERFORMANCE</option></select></label><label class="setting-row">SCREEN SHAKE <input id="shake-toggle" type="checkbox" checked></label><button class="secondary-btn" id="back-offline">← BACK TO DEPLOYMENT</button></div></div>
+            <div id="layout-panel" class="tab-panel hidden"><div class="placeholder-card"><span class="placeholder-icon">⌗</span><div class="eyebrow">CONTROL CONFIGURATION</div><h2>MAKE IT YOURS</h2><p>Drag the live HUD controls to set your preferred layout. Your arrangement is saved on this device.</p><button class="secondary-btn" id="edit-layout">OPEN HUD EDITOR ↗</button></div></div>
+          </section>
+          <aside class="mission-panel"><div class="mission-top"><span>FIELD INTEL</span><span class="intel-dot">● LIVE</span></div><div class="map-preview"><div class="map-grid"></div><div class="map-contour contour-a"></div><div class="map-contour contour-b"></div><div class="map-road"></div><span class="map-pin pin-a">◆</span><span class="map-pin pin-b">◆</span><span class="map-center">⌖</span><span class="map-coord">40° 42′ N / 74° 01′ W</span></div><div class="mission-title">NORTH RIDGE<span>ZONE / 07 — SCRIMMAGE</span></div><div class="intel-stats"><div><small>ENVIRONMENT</small><b>OVERCAST</b></div><div><small>VISIBILITY</small><b>2.4 KM</b></div><div><small>FIELD SIZE</small><b>1.8 KM²</b></div></div><div class="weather"><span>☁</span><div>COASTAL FOG<small>WIND 12 KM/H · 18°C</small></div><i>NW</i></div><div class="mission-footer"><span class="pulse-ring"></span> ALL SYSTEMS OPERATIONAL</div></aside>
+        </section>
+        <footer class="lobby-footer"><span>FIELD//ZERO <b>© 2026</b> — INDEPENDENT PROTOTYPE</span><span>MOVE WITH INTENT. <b>EXTRACT WITH HONOR.</b></span><span>◈ PROTOCOL 04.27</span></footer>
+      </div>
+      <section id="match" class="hidden">
+        <div class="match-top"><div class="match-brand">F<span>/</span>Z <i></i> NORTH RIDGE</div><div class="match-objective"><b>FIELD EXERCISE</b><span id="match-timer">00:00</span><small id="alive-count">OPERATORS 01</small></div><button id="pause-button" class="pause-button"><span>Ⅱ</span> PAUSE</button></div>
+        <div class="crosshair"><i></i><b></b><i></i><em></em><i></i><b></b><i></i></div>
+        <div class="weapon-readout"><span class="weapon-type">ASSAULT RIFLE</span><strong id="ammo-count">30 <i>/ 120</i></strong><div class="ammo-bar"><b></b></div><small id="weapon-name">AR-17 // 5.56MM</small></div>
+        <div class="health-bar-wrap"><div class="health-label"><span>VITALS</span><b id="health-value">100</b></div><div class="health-bar"><i id="health-fill"></i></div><div class="vest-label">PLATE CARRIER <b>II</b></div></div>
+        <div id="minimap" class="minimap"><div class="mini-grid"></div><div class="mini-terrain"></div><div id="map-actors"></div><div id="map-player" class="map-player"><i></i></div><div class="map-north">N</div><div class="map-scale">100 M</div></div>
+        <div class="team-hud"><span class="team-hud-title">SQUAD STATUS</span><div class="squad-row"><i class="squad-dot self"></i><span>YOU <small>ALPHA-01</small></span><b id="squad-health-self">100</b></div><div id="squad-bots"></div></div>
+        <div class="kill-feed" id="kill-feed"></div>
+        <div class="touch-hud">
+          <div id="move-pad" class="move-pad control" data-control="move"><div class="pad-ring"><div id="move-knob" class="pad-knob"></div></div><span>MOVE</span></div>
+          <div id="look-pad" class="look-pad" aria-label="Drag to look"></div>
+          <button class="touch-btn aim control" data-control="aim" id="aim-btn"><span>⊙</span><small>AIM</small></button>
+          <button class="touch-btn fire control" data-control="fire" id="fire-btn"><span>⌖</span><small>FIRE</small></button>
+          <button class="touch-btn jump control" data-control="jump"><span>↟</span><small>JUMP</small></button>
+          <button class="touch-btn crouch control" data-control="crouch"><span>⌄</span><small>CROUCH</small></button>
+          <button class="touch-btn heal control" data-control="heal"><span>＋</span><small>HEAL</small></button>
+          <button class="touch-btn swap control" data-control="swap"><span>⇄</span><small>SWAP</small></button>
+          <button class="touch-btn bag control" data-control="bag"><span>▤</span><small>BAG</small></button>
+          <button class="touch-btn reload control" data-control="reload"><span>↻</span><small>RELOAD</small></button>
+        </div>
+      </section>
+      <section id="pause-overlay" class="overlay hidden"><div class="pause-card"><div class="eyebrow">FIELD//ZERO · PAUSED</div><h2>TAKE A BREATH.</h2><p>Your field is standing by.</p><button id="resume-button" class="deploy-btn">▶ <span>RESUME OPERATION</span></button><button id="pause-layout" class="secondary-btn">⌗ CUSTOMIZE HUD LAYOUT</button><button id="lobby-button" class="secondary-btn">↩ RETURN TO LOBBY</button></div></section>
+      <section id="bag-overlay" class="overlay hidden"><div class="bag-card"><button class="close-btn" id="close-bag">×</button><div class="eyebrow">OPERATOR LOADOUT</div><h2>FIELD PACK <span>∞ CAPACITY</span></h2><div class="weapon-slots"><button class="weapon-slot active" data-slot="0"><small>PRIMARY 01</small><b>AR-17 RANGER</b><span>5.56MM · FULL AUTO</span><strong id="bag-ammo-0">30 / 120</strong></button><button class="weapon-slot" data-slot="1"><small>PRIMARY 02</small><b>VX-9 VECTOR</b><span>9MM · HIGH RATE</span><strong id="bag-ammo-1">24 / 96</strong></button></div><div class="inventory-heading">CARRIED ITEMS <span id="item-count">04 ITEMS</span></div><div id="inventory-list" class="inventory-list"></div><div class="bag-tip">PICK UP field supplies with <b>F</b> or tap nearby loot.</div></div></section>
+      <div id="toast" class="toast hidden"></div>
+      <div id="layout-hint" class="layout-hint hidden">HUD EDIT MODE <span>DRAG CONTROLS TO REPOSITION</span><button id="save-layout">DONE</button><button id="reset-layout">RESET</button></div>
+      <div id="rotate-hint" class="rotate-hint hidden"><span>▰</span><b>ROTATE YOUR DEVICE</b><small>FIELD//ZERO IS BUILT FOR LANDSCAPE</small></div>
+    </main>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
